@@ -8,37 +8,49 @@ RowSet processResult = select().fields("id", "title").tables("process").build().
 ```
 
 Feel free to use or copy.
-Note: please *don't use this builder in production*, the project is not very well tested.
+Note: please **don't use this builder in production**, the project is not very well tested.
 
 Usage
 -----
 ### Select
 
 ```java
-RowSet rs = select().fields("id", "title").tables("users").where("name", "Bob").limit(10).build().executeQuery();
+RowSet rs = select().tables("users")
+                .fields("id", "title")
+                .where("name", "Bob")
+                .limit(10)
+                .build()
+                .executeQuery();
 ```
 
 ### Update
 
 ```java
 update().tables("process")
-                    .values("title", "My Title")
-                    .where("owner_id", "42")
-                    .where("id", id).build().executeUpdate();
+            .values("title", "My Title")
+            .where("owner_id", "42")
+            .where("id", id)
+            .build()
+            .executeUpdate();
 ```
 
 ### Insert
 
 ```java
 insert().tables("idea")
-        .values("title", "My Title", "owner_id", "52").build().executeUpdate();
+            .values("title", "My Title", "owner_id", "52")
+            .build()
+            .executeUpdate();
 ```
 
 ### Delete
 
 ```java
-delete().tables("idea").where("id", String.valueOf(ideaId))
-                    .limit(1).build().executeUpdate();
+delete().tables("idea")
+            .where("id", String.valueOf(ideaId))
+            .limit(1)
+            .build()
+            .executeUpdate();
 ```
 
 Please check the interface ISqlBuilder.java for all methods and javadoc.
